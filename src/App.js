@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import Content from './page/Main/HomeScreen';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import LoginTeacher from './page/Login/LoginTeacher';
+import LoginStudent from './page/Login/LoginStudent';
+import JoinClassedStudent from './page/JoinClassed/JoinClassedStudent';
+import JoinClassedTeacher from './page/JoinClassed/JoinClassedTeacher';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        {/* Routing sinh viên */}
+        <Route path='/' element={<Navigate to='/sinh-vien' />} />
+        <Route path='/sinh-vien' element={<LoginStudent />} />
+        <Route path='/sinh-vien' element={<Content />} />
+        <Route path='/sinh-vien/class/:id' element={<JoinClassedStudent />} />
+
+        {/* Routing giảng viên */}
+        <Route path='/giang-vien' element={<LoginTeacher />} />
+        <Route path='giang-vien' element={<Content />} />
+        <Route path='/giang-vien/class/:id' element={<JoinClassedTeacher />} />
+      </Routes>
+    </>
   );
 }
 
